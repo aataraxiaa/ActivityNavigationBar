@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ActivityNavigationBar_Example' do
+  pod 'ActivityNavigationBar', :path => '../'
+
+  target 'ActivityNavigationBar_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
