@@ -26,11 +26,11 @@ import UIKit
 public class ActivityNavigationBar: UINavigationBar {
     
     /// Activity bar height
-    @IBInspectable public var activityBarHeight: CGFloat? {
+    @IBInspectable public var activityBarHeight: NSNumber? {
         didSet {
             guard let activityBarHeight = activityBarHeight else { return }
             
-            activityBarView?.heightAnchor.constraintEqualToConstant(activityBarHeight).active = true
+            activityBarHeightConstraint?.constant = CGFloat(activityBarHeight)
         }
     }
     
@@ -45,6 +45,8 @@ public class ActivityNavigationBar: UINavigationBar {
     
     // MARK: - Properties (Private)
     private var activityBarView: UIProgressView?
+    private var activityBarHeightConstraint: NSLayoutConstraint?
+    
     private var startTimer: NSTimer?
     private var waitValue: Float = 0.8
     private var finishTimer: NSTimer?
@@ -168,6 +170,7 @@ public class ActivityNavigationBar: UINavigationBar {
         activityBarView.widthAnchor.constraintEqualToAnchor(widthAnchor).active = true
         
         // The height can be changed
-        activityBarView.heightAnchor.constraintEqualToConstant(3).active = true
+        activityBarHeightConstraint = activityBarView.heightAnchor.constraintEqualToConstant(3)
+        activityBarHeightConstraint?.active = true
     }
 }
