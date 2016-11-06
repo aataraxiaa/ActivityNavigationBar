@@ -74,9 +74,17 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4rJ-YA-LyZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QQy-nr-nxl" customClass="ActivityNavigationBar" customModule="ActivityNavigationBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="QQy-nr-nxl" customClass="ActivityNavigationBar" customModule="ActivityNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="activityBarColor">
+                                <color key="value" red="0.96470588239999999" green="0.51372549020000002" blue="0.46666666670000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="activityBarHeight">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -1,10 +1,32 @@
+//
+//  Created by Pete Smith
+//  http://www.petethedeveloper.com
+//
+//
+//  License
+//  Copyright © 2016-present Pete Smith
+//  Released under an MIT license: http://opensource.org/licenses/MIT
+//
+
 import UIKit
 
+
+/*
+ Activity navigation bar provides a custom navigation bar with a build in
+ activity indicator. The activity indicator is styled like a progress bar, 
+ but is intended to be used to indicate indeterminate activity time.
+ 
+ To achieve this, the activity is started with a 'waitAt' parameter.
+ The activity bar will then animate progress to this point, and stop.
+ Then, once our indeterminate activity has finished, we finish the 
+ activity indicator.
+ 
+*/
 @IBDesignable
 public class ActivityNavigationBar: UINavigationBar {
     
     /// Activity bar height
-    public var activityBarHeight: CGFloat? {
+    @IBInspectable public var activityBarHeight: CGFloat? {
         didSet {
             guard let activityBarHeight = activityBarHeight else { return }
             
@@ -13,7 +35,7 @@ public class ActivityNavigationBar: UINavigationBar {
     }
     
     /// Activity bar color
-    public var activityBarColor: UIColor? {
+    @IBInspectable public var activityBarColor: UIColor? {
         didSet {
             guard let activityBarColor = activityBarColor else { return }
             
@@ -43,6 +65,10 @@ public class ActivityNavigationBar: UINavigationBar {
     
     // MARK: API
     
+    
+    /// Start the activity bar from progress 0, specifying a value to wait/stop at
+    ///
+    /// - Parameter waitValue: Value between 0 and 1
     public func startActivity(andWaitAt waitValue: Float) {
         
         guard waitValue > 0 && waitValue < 1 else {
@@ -59,6 +85,11 @@ public class ActivityNavigationBar: UINavigationBar {
                                                             userInfo: nil, repeats: true)
     }
     
+    
+    /// Finish the activity bar, animating to a progress of 1, 
+    /// using the specified animation duration
+    ///
+    /// - Parameter duration: The animation duration
     public func finishActivity(withDuration duration: Double) {
         
         startTimer?.invalidate()
@@ -74,6 +105,8 @@ public class ActivityNavigationBar: UINavigationBar {
     
     }
     
+    
+    /// Reset the activity bar to 0 progress
     public func reset() {
         
         activityBarView?.hidden = true
