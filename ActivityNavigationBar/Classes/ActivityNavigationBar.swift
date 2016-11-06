@@ -10,7 +10,6 @@
 
 import UIKit
 
-
 /*
  Activity navigation bar provides a custom navigation bar with a build in
  activity indicator. The activity indicator is styled like a progress bar, 
@@ -26,7 +25,7 @@ import UIKit
 public class ActivityNavigationBar: UINavigationBar {
     
     /// Activity bar height
-    @IBInspectable public var activityBarHeight: NSNumber? {
+    @IBInspectable public var activityBarHeight: CGFloat? {
         didSet {
             guard let activityBarHeight = activityBarHeight else { return }
             
@@ -35,7 +34,7 @@ public class ActivityNavigationBar: UINavigationBar {
     }
     
     /// Activity bar color
-    public var activityBarColor: UIColor? {
+    @IBInspectable public var activityBarColor: UIColor? {
         didSet {
             guard let activityBarColor = activityBarColor else { return }
             
