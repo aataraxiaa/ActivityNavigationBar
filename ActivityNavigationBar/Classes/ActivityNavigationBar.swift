@@ -35,7 +35,7 @@ public class ActivityNavigationBar: UINavigationBar {
     }
     
     /// Activity bar color
-    @IBInspectable public var activityBarColor: UIColor? {
+    public var activityBarColor: UIColor? {
         didSet {
             guard let activityBarColor = activityBarColor else { return }
             
