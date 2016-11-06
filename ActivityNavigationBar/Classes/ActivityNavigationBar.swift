@@ -91,7 +91,7 @@ public class ActivityNavigationBar: UINavigationBar {
     /// using the specified animation duration
     ///
     /// - Parameter duration: The animation duration
-    public func finishActivity(withDuration duration: Double) {
+    public func finishActivity(withDuration duration: Double, andCompletion completion: (() -> Void)? = nil) {
         
         startTimer?.invalidate()
         
@@ -100,10 +100,13 @@ public class ActivityNavigationBar: UINavigationBar {
         UIView.animateWithDuration(duration, animations: {
             self.activityBarView?.layoutIfNeeded()
         }, completion: { finished in
-            self.activityBarView?.hidden = true
-            self.activityBarView?.progress = 0.0
+            if finished {
+                self.activityBarView?.hidden = true
+                self.activityBarView?.progress = 0.0
+                
+                completion?()
+            }
         })
-    
     }
     
     
