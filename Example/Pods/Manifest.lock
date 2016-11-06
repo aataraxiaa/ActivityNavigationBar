@@ -1,0 +1,16 @@
+PODS:
+  - ActivityNavigationBar (0.1.0)
+
+DEPENDENCIES:
+  - ActivityNavigationBar (from `../`)
+
+EXTERNAL SOURCES:
+  ActivityNavigationBar:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ActivityNavigationBar: e5f6b548d4e6c2a35c47ff134282b366d843d572
+
+PODFILE CHECKSUM: 2eaa4db7ffabef4d35791b34216a6c4b0a6d7cfa
+
+COCOAPODS: 1.1.1
