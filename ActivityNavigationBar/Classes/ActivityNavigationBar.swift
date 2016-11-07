@@ -91,12 +91,11 @@ public class ActivityNavigationBar: UINavigationBar {
         UIView.animateWithDuration(duration, animations: {
             self.activityBarView?.layoutIfNeeded()
         }, completion: { finished in
-            if finished {
-                self.activityBarView?.hidden = true
-                self.activityBarView?.progress = 0.0
-                
-                completion?()
-            }
+            
+            self.activityBarView?.hidden = true
+            self.activityBarView?.progress = 0.0
+            
+            completion?()
         })
     }
     
