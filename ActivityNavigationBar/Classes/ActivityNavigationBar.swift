@@ -24,15 +24,6 @@ import UIKit
 @IBDesignable
 public class ActivityNavigationBar: UINavigationBar {
     
-    /// Activity bar height
-    @IBInspectable public var activityBarHeight: CGFloat? {
-        didSet {
-            guard let activityBarHeight = activityBarHeight else { return }
-            
-//            activityBarHeightConstraint?.constant = CGFloat(activityBarHeight)
-        }
-    }
-    
     /// Activity bar color
     @IBInspectable public var activityBarColor: UIColor? {
         didSet {
@@ -142,16 +133,21 @@ public class ActivityNavigationBar: UINavigationBar {
     
     private func addActivityView() {
         
-        let containerView = UIView(frame: CGRect(x: 0, y: bounds.height - 3, width: bounds.width, height: 3))
+        activityBarView = UIProgressView(progressViewStyle: .Bar)
         
-        activityBarView = UIProgressView()
+        let width = bounds.width
+        let height: CGFloat = 3.0
+        let yPosition = bounds.height - height
+        
+        activityBarView?.frame = CGRect(x: 0, y: yPosition, width: width, height: height)
         
         guard let activityBarView = activityBarView else { return }
         
-        containerView.addSubview(activityBarView)
+        let transform  = CGAffineTransformMakeScale(1.0, 1.5)
+        activityBarView.transform = transform
         
         // Add to the navigation bar
-        addSubview(containerView)
+        addSubview(activityBarView)
         
         // Appearance
         
@@ -161,20 +157,5 @@ public class ActivityNavigationBar: UINavigationBar {
         // Color
         activityBarView.tintColor = .orangeColor()
         activityBarView.trackTintColor = .clearColor()
-        
-        // Constraints
-        activityBarView.translatesAutoresizingMaskIntoConstraints = false
-        
-        activityBarView.leftAnchor.constraintEqualToAnchor(containerView.leftAnchor).active = true
-        
-        // The progress view sits at the bottom of the navigation bar
-        activityBarView.bottomAnchor.constraintEqualToAnchor(containerView.bottomAnchor).active = true
-        
-        // The progress view is always full width
-        activityBarView.widthAnchor.constraintEqualToAnchor(containerView.widthAnchor).active = true
-        
-        // The height can be changed
-        activityBarHeightConstraint = activityBarView.heightAnchor.constraintEqualToConstant(3)
-        activityBarHeightConstraint?.active = true
     }
 }
