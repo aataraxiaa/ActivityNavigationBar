@@ -133,15 +133,21 @@ public class ActivityNavigationBar: UINavigationBar {
     
     private func addActivityView() {
         
+        // Create our progress view
+        
         activityBarView = UIProgressView(progressViewStyle: .Bar)
         
-        let width = bounds.width
+        // Set it's initial frame
+        
+        let width = UIScreen.mainScreen().bounds.width
         let height: CGFloat = 3.0
         let yPosition = bounds.height - height
         
         activityBarView?.frame = CGRect(x: 0, y: yPosition, width: width, height: height)
         
         guard let activityBarView = activityBarView else { return }
+        
+        // Use a transform to set the desired height of 3
         
         let transform  = CGAffineTransformMakeScale(1.0, 1.5)
         activityBarView.transform = transform
