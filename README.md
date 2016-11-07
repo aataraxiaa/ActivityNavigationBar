@@ -26,8 +26,6 @@ pod "ActivityNavigationBar"
 
 ## Usage
 
-### Storyboard or Xib, & code
-
 * Set the class type of your navigation bar from UINavigationBar to ActivityNavigationBar in your storyboard scene or Xib
 * In the view controller class corresponding to your storyboard scene, create an optional var which will allow you to reference the ActivityNavigationBar;
 
@@ -37,11 +35,25 @@ var activityNavigationBar: ActivityNavigationBar? {
 }
 ```
 
-* Now, use the ActivityNavigationBar as follows;
+* Now, use the ActivityNavigationBar as follows. 
 
-### Just code
+Start it;
 
-*
+```
+activityNavigationBar?.startActivity(andWaitAt: 0.8)
+```
+
+Finish it;
+
+```
+activityNavigationBar?.finishActivity(withDuration: duration)
+```
+
+Reset it;
+
+```
+activityNavigationBar?.reset()
+```
 
 ## Example
 
