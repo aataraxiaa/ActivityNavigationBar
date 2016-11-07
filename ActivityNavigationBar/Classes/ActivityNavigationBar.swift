@@ -109,7 +109,6 @@ public class ActivityNavigationBar: UINavigationBar {
         })
     }
     
-    
     /// Reset the activity bar to 0 progress
     public func reset() {
         
@@ -148,7 +147,6 @@ public class ActivityNavigationBar: UINavigationBar {
         self.activityBarView = activityBarView
         
         // Add to the navigation bar
-        clipsToBounds = false
         addSubview(activityBarView)
         
         // Appearance
