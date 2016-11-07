@@ -29,7 +29,7 @@ public class ActivityNavigationBar: UINavigationBar {
         didSet {
             guard let activityBarHeight = activityBarHeight else { return }
             
-            activityBarHeightConstraint?.constant = CGFloat(activityBarHeight)
+//            activityBarHeightConstraint?.constant = CGFloat(activityBarHeight)
         }
     }
     
@@ -142,7 +142,7 @@ public class ActivityNavigationBar: UINavigationBar {
     
     private func addActivityView() {
         
-        let activityBarView = UIProgressView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        let activityBarView = UIProgressView(frame: CGRect(x: 0, y: bounds.height-3, width: bounds.width, height: 3))
         
         self.activityBarView = activityBarView
         
@@ -159,18 +159,18 @@ public class ActivityNavigationBar: UINavigationBar {
         activityBarView.trackTintColor = .clearColor()
         
         // Constraints
-        activityBarView.translatesAutoresizingMaskIntoConstraints = false
+//        activityBarView.translatesAutoresizingMaskIntoConstraints = false
         
-        activityBarView.leftAnchor.constraintEqualToAnchor(leftAnchor).active = true
-        
-        // The progress view sits at the bottom of the navigation bar
-        activityBarView.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
-        
-        // The progress view is always full width
-        activityBarView.widthAnchor.constraintEqualToAnchor(widthAnchor).active = true
-        
-        // The height can be changed
-        activityBarHeightConstraint = activityBarView.heightAnchor.constraintEqualToConstant(3)
-        activityBarHeightConstraint?.active = true
+//        activityBarView.leftAnchor.constraintEqualToAnchor(leftAnchor).active = true
+//        
+//        // The progress view sits at the bottom of the navigation bar
+//        activityBarView.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
+//        
+//        // The progress view is always full width
+//        activityBarView.widthAnchor.constraintEqualToAnchor(widthAnchor).active = true
+//        
+//        // The height can be changed
+//        activityBarHeightConstraint = activityBarView.heightAnchor.constraintEqualToConstant(3)
+//        activityBarHeightConstraint?.active = true
     }
 }
