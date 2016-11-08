@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="activityBarColor">
-                                <color key="value" red="0.47058823529999999" green="0.62745098040000002" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.99215686274509807" green="0.44705882352941173" blue="0.41960784313725491" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="activityBarHeight">
                                 <real key="value" value="1"/>
