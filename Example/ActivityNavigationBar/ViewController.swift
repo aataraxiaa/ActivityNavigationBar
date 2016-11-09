@@ -20,23 +20,23 @@ class ViewController: UIViewController {
         return duration
     }
     
-    private var activityNavigationBar: ActivityNavigationBar? {
+    fileprivate var activityNavigationBar: ActivityNavigationBar? {
         guard let activityNavigationBar = navigationController?.navigationBar as? ActivityNavigationBar else { return nil }
         
         return activityNavigationBar
     }
     
-    @IBAction func startButtonPressed(sender: AnyObject) {
+    @IBAction func startButtonPressed(_ sender: AnyObject) {
         
         activityNavigationBar?.startActivity(andWaitAt: 0.8)
     }
     
-    @IBAction func finishButtonPressed(sender: AnyObject) {
+    @IBAction func finishButtonPressed(_ sender: AnyObject) {
         activityNavigationBar?.finishActivity(withDuration: duration)
     }
     
     
-    @IBAction func resetButtonPressed(sender: AnyObject) {
+    @IBAction func resetButtonPressed(_ sender: AnyObject) {
         activityNavigationBar?.reset()
     }
 }

@@ -22,10 +22,10 @@ import UIKit
  
 */
 @IBDesignable
-public class ActivityNavigationBar: UINavigationBar {
+open class ActivityNavigationBar: UINavigationBar {
     
     /// Activity bar color
-    @IBInspectable public var activityBarColor: UIColor? {
+    @IBInspectable open var activityBarColor: UIColor? {
         didSet {
             guard let activityBarColor = activityBarColor else { return }
             
@@ -34,12 +34,12 @@ public class ActivityNavigationBar: UINavigationBar {
     }
     
     // MARK: - Properties (Private)
-    private var activityBarView: UIProgressView?
-    private var activityBarHeightConstraint: NSLayoutConstraint?
+    fileprivate var activityBarView: UIProgressView?
+    fileprivate var activityBarHeightConstraint: NSLayoutConstraint?
     
-    private var startTimer: NSTimer?
-    private var waitValue: Float = 0.8
-    private var finishTimer: NSTimer?
+    fileprivate var startTimer: Timer?
+    fileprivate var waitValue: Float = 0.8
+    fileprivate var finishTimer: Timer?
     
     // MARK: - Lifecycle
     
@@ -61,18 +61,18 @@ public class ActivityNavigationBar: UINavigationBar {
     /// Start the activity bar from progress 0, specifying a value to wait/stop at
     ///
     /// - Parameter waitValue: Value between 0 and 1
-    public func startActivity(andWaitAt waitValue: Float) {
+    open func startActivity(andWaitAt waitValue: Float) {
         
         guard waitValue > 0 && waitValue < 1 else {
             fatalError("The waitValue must be between 0 and 1")
         }
         
-        activityBarView?.hidden = false
+        activityBarView?.isHidden = false
         activityBarView?.progress = 0.0
         
         self.waitValue = waitValue
         
-        startTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self,
+        startTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self,
                                                             selector: #selector(updateStartProgress),
                                                             userInfo: nil, repeats: true)
     }
@@ -82,17 +82,17 @@ public class ActivityNavigationBar: UINavigationBar {
     /// using the specified animation duration
     ///
     /// - Parameter duration: The animation duration
-    public func finishActivity(withDuration duration: Double, andCompletion completion: (() -> Void)? = nil) {
+    open func finishActivity(withDuration duration: Double, andCompletion completion: (() -> Void)? = nil) {
         
         startTimer?.invalidate()
         
         activityBarView?.progress = 1
         
-        UIView.animateWithDuration(duration, animations: {
+        UIView.animate(withDuration: duration, animations: {
             self.activityBarView?.layoutIfNeeded()
         }, completion: { finished in
             
-            self.activityBarView?.hidden = true
+            self.activityBarView?.isHidden = true
             self.activityBarView?.progress = 0.0
             
             completion?()
@@ -100,20 +100,20 @@ public class ActivityNavigationBar: UINavigationBar {
     }
     
     /// Reset the activity bar to 0 progress
-    public func reset() {
+    open func reset() {
         
-        activityBarView?.hidden = true
+        activityBarView?.isHidden = true
         activityBarView?.setProgress(0, animated: false)
     }
     
     // MARK: - Activity bar progress
     
     @objc
-    private func updateStartProgress() {
+    fileprivate func updateStartProgress() {
         
         guard let activityBarView = activityBarView else { return }
         
-        guard let startTimer = startTimer where startTimer.valid else { return }
+        guard let startTimer = startTimer, startTimer.isValid else { return }
         
         guard activityBarView.progress < waitValue else {
             startTimer.invalidate()
@@ -125,20 +125,20 @@ public class ActivityNavigationBar: UINavigationBar {
     
     // MARK: - Initialization
     
-    private func commonInit() {
+    fileprivate func commonInit() {
         
         addActivityView()
     }
     
-    private func addActivityView() {
+    fileprivate func addActivityView() {
         
         // Create our progress view
         
-        activityBarView = UIProgressView(progressViewStyle: .Bar)
+        activityBarView = UIProgressView(progressViewStyle: .bar)
         
         // Set it's initial frame
         
-        let width = UIScreen.mainScreen().bounds.width
+        let width = UIScreen.main.bounds.width
         let height: CGFloat = 3.0
         let yPosition = bounds.height - height
         
@@ -148,7 +148,7 @@ public class ActivityNavigationBar: UINavigationBar {
         
         // Use a transform to set the desired height of 3
         
-        let transform  = CGAffineTransformMakeScale(1.0, 1.5)
+        let transform  = CGAffineTransform(scaleX: 1.0, y: 1.5)
         activityBarView.transform = transform
         
         // Add to the navigation bar
@@ -157,10 +157,10 @@ public class ActivityNavigationBar: UINavigationBar {
         // Appearance
         
         // Initially hide the progress view
-        activityBarView.hidden = true
+        activityBarView.isHidden = true
         
         // Color
-        activityBarView.tintColor = .orangeColor()
-        activityBarView.trackTintColor = .clearColor()
+        activityBarView.tintColor = .orange
+        activityBarView.trackTintColor = .clear
     }
 }
